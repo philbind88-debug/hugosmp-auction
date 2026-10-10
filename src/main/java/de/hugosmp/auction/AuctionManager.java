@@ -152,8 +152,7 @@ public final class AuctionManager {
 
     private static void playSound(net.minecraft.sound.SoundEvent event, float pitch) {
         MinecraftClient mc = MinecraftClient.getInstance();
-        mc.getSoundManager().play(PositionedSoundInstance.master(event, pitch, 1.0f));
-    }
+           if (mc.player != null) { mc.player.playSound(event, 1.0f, pitch); } }
 
     public static String formatMoney(long amount) {
         return "$" + NumberFormat.getIntegerInstance(Locale.GERMANY).format(amount);
