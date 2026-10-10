@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "hugoauction",
+  "version": "${version}",
+  "name": "Hugo Auktion",
+  "description": "Auktions-Overlay für Streamer auf Hugo SMP: Item scannen, Timer starten, Zahlungen aus dem Chat zählen.",
+  "authors": ["Hugo SMP"],
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["de.hugosmp.auction.HugoAuctionClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
