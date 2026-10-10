@@ -20,7 +20,13 @@ jobs:
           gradle-version: 9.2.1
 
       - name: Mod bauen
-        run: gradle build
+        run: |
+          gradle build --console=plain > build.log 2>&1 || {
+            msg=$(grep -E "error:|What went wrong|Caused by|Could not|FAILED" -A3 build.log | head -40 | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')
+            echo "::error title=Build-Fehler::$msg"
+            tail -40 build.log
+            exit 1
+          }
 
       - name: Fertige Mod hochladen
         uses: actions/upload-artifact@v4
