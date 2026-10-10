@@ -4,9 +4,13 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.Text;
 
-/** Button im Liquid-Glass-Stil: durchscheinend, runde Ecken, Glanz, Hover-Aufhellung. */
+/**
+ * Button im Liquid-Glass-Stil: durchscheinend, runde Ecken, Glanz, Hover-Aufhellung.
+ *
+ * Hinweis: ButtonWidget enthält eine innere Klasse namens "Text", die den Namen
+ * net.minecraft.text.Text verdeckt. Deshalb steht hier überall der volle Name.
+ */
 public class GlassButton extends ButtonWidget {
 
     public enum Style { NORMAL, ACCENT, DANGER }
@@ -14,12 +18,14 @@ public class GlassButton extends ButtonWidget {
     private final Style style;
     private boolean selected;
 
-    public GlassButton(int x, int y, int width, int height, Text message, PressAction onPress, Style style) {
+    public GlassButton(int x, int y, int width, int height, net.minecraft.text.Text message,
+                       PressAction onPress, Style style) {
         super(x, y, width, height, message, onPress, DEFAULT_NARRATION_SUPPLIER);
         this.style = style;
     }
 
-    public GlassButton(int x, int y, int width, int height, Text message, PressAction onPress) {
+    public GlassButton(int x, int y, int width, int height, net.minecraft.text.Text message,
+                       PressAction onPress) {
         this(x, y, width, height, message, onPress, Style.NORMAL);
     }
 
@@ -28,7 +34,7 @@ public class GlassButton extends ButtonWidget {
     }
 
     @Override
-    public void renderWidget(DrawContext ctx, int mouseX, int mouseY, float delta) {
+    public void drawIcon(DrawContext ctx, int mouseX, int mouseY, float delta) {
         int x = getX();
         int y = getY();
         int w = getWidth();
